@@ -60,6 +60,13 @@
         "mark": {"type": "circle", "filled":false, "opacity":0.5,"tooltip": {"content": "data"}
       },
         "encoding": {
+          "tooltip": [
+            {"field": "LOCATION_NAME"},
+            {"field": "COUNTRY"},
+            {"field": "EQ_MAGNITUDE","type":"ordinal"},
+            {"field": "EQ_DEPTH","type":"quantitative"},
+            {"field":"YEAR","type":"quantitative"}        
+        ],
           "longitude": {"field": "LONGITUDE", "type": "quantitative"},
           "latitude": {"field": "LATITUDE", "type": "quantitative"},
           "size": {

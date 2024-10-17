@@ -14,13 +14,17 @@
 <body>
   
 <div id="map"></div>
-
+<div id="heatmap"></div>
 <script type="text/javascript">
 
-  var map = "js/tsunamis.vg.json";
-  vegaEmbed('#map', map).then(function(result) {
+  vegaEmbed('#map', "js/tsunamis.vg.json").then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
+  vegaEmbed('#heatmap', "js/scatterplot.vg.json").then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+
 </script>
 
 </body>

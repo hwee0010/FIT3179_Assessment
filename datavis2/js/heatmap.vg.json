@@ -1,0 +1,37 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "data/earthquakes.csv"},
+    "transform":[],
+    "width": 300,
+    "height": 200,
+    "title": "Heat Map",
+    "mark":"rect",
+    "params": [
+        {
+            "name": "continent",
+            "select": {"type": "point", "fields": ["continent"]},
+            "bind": {"input":"select","options": [null,"North America"]}
+        }
+    ],
+    "encoding": {
+        "x": {
+            "bin": {"maxbins": 10},
+            "field": "magnitude",
+            "type": "ordinal"
+        },
+        "y": {
+            "bin": {"maxbins":20},
+            "field": "depth",
+            "type": "quantitative"
+        },
+        "color": {
+            "aggregate": "count",
+            "type": "quantitative"
+        }
+    },
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}
