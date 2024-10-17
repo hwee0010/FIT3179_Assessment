@@ -8,7 +8,7 @@
   
   
   <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="datavis2/css/styles.css" media="all">
+  <link rel="stylesheet" type="text/css" href="src/css/styles.css" media="all">
   
 </head>
 <body>
@@ -17,10 +17,10 @@
 <div id="heatmap"></div>
 <script type="text/javascript">
 
-  vegaEmbed('#map', "datavis2/js/tsunamis.vg.json").then(function(result) {
+  vegaEmbed('#map', "src/js/tsunamis.vg.json").then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
-  vegaEmbed('#heatmap', "datavis2/js/scatterplot.vg.json").then(function(result) {
+  vegaEmbed('#heatmap', "src/js/scatterplot.vg.json").then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
 
