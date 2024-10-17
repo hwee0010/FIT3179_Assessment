@@ -3,13 +3,21 @@
   "data": { "url": "src/data/earthquakes.csv" },
   "transform": [
     {
-        "calculate": "datum.continent[0] + datum.continent[1]",
-        "as": "CountryInitials"
+      "calculate": "datum.continent[0] + datum.continent[1]",
+      "as": "CountryInitials"
     }
   ],
-  "width": 300,
-  "height": 200,
-  "title": "Scatterplot of Earthquake Magnitudes vs Depth",
+  "width": 600,
+  "height": 300,
+  "title": {
+    "text": "Scatterplot of Earthquake Magnitude Vs. Depth",
+    "subtitle":"Earthquakes of the same depth can be recorded as different magnitudes.",
+    "subtitleFontSize":15,
+    "subtitleFont":"Arial",
+    "fontSize": 30,
+    "font": "Impact",
+    "fontWeight": "bold"
+  },
   "mark": "text",
   "params": [
     {
@@ -17,43 +25,39 @@
       "select": { "type": "point", "fields": ["continent"] },
       "bind": {
         "input": "select",
-        "options": [
-          null,
-          "North America",
-          "Asia",
-          "Oceania"
-        ]
-    }
+        "options": [null, "North America", "Asia", "Oceania"]
+      }
     }
   ],
   "encoding": {
-    "text": {"field": "CountryInitials","type":"nominal"},
+    "text": { "field": "CountryInitials", "type": "nominal" },
     "tooltip": [
-        {"field": "continent"},
-        {"field": "country"},
-        {"field": "magnitude","type":"ordinal"},
-        {"field": "depth","type":"quantitative"},
-        {"field":"date","type":"temporal"}        
+      { "field": "continent"},
+      { "field": "country" },
+      { "field": "magnitude", "type": "ordinal" },
+      { "field": "depth", "type": "quantitative" },
+      { "field": "date", "type": "temporal" }
     ],
     "x": {
       "field": "magnitude",
       "type": "quantitative",
+      "scale": { "domainMin": 2.5 },
       "axis": {
-        "title":"Earthquake Magnitude (Richter Scale)"
+        "title": "Earthquake Magnitude (Richter Scale)"
       }
     },
     "y": {
       "field": "depth",
       "type": "quantitative",
       "axis": {
-        "title":"Earthquake Depth (km)"
+        "title": "Earthquake Depth (km)"
       }
     },
     "color": {
       "condition": {
         "param": "Continent",
         "field": "cdi",
-        "legend": {"title": "Community Determined Intensity"},
+        "legend": { "title": "Community Determined Intensity" },
         "type": "quantitative"
       },
       "value": "grey"
