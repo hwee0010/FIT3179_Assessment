@@ -22,7 +22,7 @@
       },
       {
         "data": {
-          "url": "data/earthquakes.csv"
+          "url": "src/data/earthquakes.csv"
         },
         "mark": {"type": "circle", "filled":false, "opacity":0.5,"tooltip": {"content": "data"}},
         "encoding": {

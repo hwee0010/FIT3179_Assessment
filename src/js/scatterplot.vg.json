@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": { "url": "data/earthquakes.csv" },
+  "data": { "url": "src/data/earthquakes.csv" },
   "transform": [
     {
         "calculate": "datum.continent[0] + datum.continent[1]",
