@@ -1,0 +1,117 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 900,
+    "height": 500,
+    "background": "lightskyblue",
+    "title": {
+      "text": "Global Distribution of Natural Disasters",
+      "subtitle": "Below is the distribution of tsunamis and earthquakes globally.",
+      "subtitleFontSize": 15,
+      "fontSize": 30,
+      "font": "Impact",
+      "fontWeight": "bold"
+    },
+    "projection": { "type": "equirectangular" },
+  
+    "layer": [
+      {
+        "data": {
+          "url": "src/js/tectonic_plates.json",
+          "format": { "type": "topojson", "feature": "tectonic_plates" }
+        },
+        "mark": { "type": "geoshape", "fill": null, "stroke": "darkred" }
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
+          "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+        },
+        "mark": {
+          "type": "geoshape",
+          "fill": "forestgreen",
+          "stroke": "darkgreen"
+        }
+      },
+      
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
+          "format": { "type": "topojson", "feature": "ne_110m_graticules_30" }
+        },
+        "mark": { "type": "geoshape", "fill": null, "stroke": "lightgray" }
+      },
+      {
+        "data": {
+          "url": "src/js/ne_50m_urban_areas.topojson",
+          "format": { "type": "topojson", "feature": "ne_50m_urban_areas" }
+        },
+        "mark": { "type": "geoshape", "fill": null, "stroke": "lightgray" }
+      },
+      {
+        "data": { "url": "src/data/eruptions.csv" },
+        "mark": {
+          "type": "square",
+          "filled": false,
+          "opacity": 0.5,
+          "tooltip": { "content": "data" }
+        },
+      "encoding":{
+       "tooltip": [
+        {"field": "volcano_name","title":"Volcano Name"}
+       ],
+       "longitude":{"field":"longitude","type":"quantitative"},
+       "latitude":{"field":"latitude","type":"quantitative"},
+       "color": {"value": "red"},
+       "strokeOpacity":{"value":0.1}
+      }
+      },
+      {
+        "data": {
+          "url": "src/data/earthquakes.csv"
+        },
+        "mark": {
+          "type": "square",
+          "filled": false,
+          "opacity": 0.5,
+          "tooltip": { "content": "data" }
+        },
+        "encoding": {
+          "tooltip": [
+            { "field": "continent" },
+            { "field": "country" },
+            { "field": "magnitude", "type": "ordinal" },
+            { "field": "depth", "type": "quantitative" },
+            { "field": "date", "type": "temporal" }
+          ],
+          "longitude": { "field": "longitude", "type": "quantitative" },
+          "latitude": { "field": "latitude", "type": "quantitative" },
+          "size": {
+            "field": "magnitude",
+            "type": "quantitative",
+            "title": "Magnitude (Richter Scale)",
+            "scale": { "domain": [6, 8] }
+          },
+          "color": {
+            "field": "depth",
+            "type": "quantitative",
+            "title": "Depth in km",
+            "scale": { "scheme": "darkblue", "domainMin": 0, "domainMax": 150 }
+          },
+          "strokeOpacity": { "value": 1 }
+        },
+        "params": [
+          {
+            "name": "magnitude",
+            "select": "point"
+          },
+          {
+            "name": "magnitude",
+            "value": 5,
+            "bind": { "input": "range", "min": 0, "max": 8 }
+          }
+        ]
+      }
+  
+    ]
+  }
+  
