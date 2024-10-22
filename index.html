@@ -1,31 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!-- Import Vega & Vega-Lite -->
+      <!-- Import Vega & Vega-Lite -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
   
-  
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="src/css/styles.css" media="all">
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural Disasters Data Visualization</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .text-content {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .visualization {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        
+        /* Responsive Grid for the last two charts */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* 1:2 ratio */
+            gap: 20px;
+            align-items: start;
+        }
+
+        /* Full-width map section */
+        .visualization.map {
+            width: 100%;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .grid-layout {
+                grid-template-columns: 1fr; /* Stack text and charts on smaller screens */
+            }
+        }
+    </style>
 </head>
+
 <body>
-  
-<div id="map"></div>
-<div id="heatmap"></div>
-<script type="text/javascript">
 
-  vegaEmbed('#map', "src/js/tsunamis.vg.json").then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-  vegaEmbed('#heatmap', "src/js/scatterplot.vg.json").then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
+<div class="container">
+    <!-- Section 1: Map Visualization -->
+    <div class="section">
+        <h2 class="section-title">Correlation Between Tectonic Plates and Natural Disasters</h2>
+        <div class="text-content">
+            This map shows the correlation between tectonic plates and natural disasters like earthquakes, tsunamis, and volcanoes.
+            <br><br>
+            Around 90% of earthquakes and 75% of active volcanoes occur near tectonic plate boundaries, especially along the Pacific Ring of Fire. 
+            <br><br>
+            Use the map to explore where these disasters cluster and how tectonic movements shape global risk zones.
+        </div>
+        <div class="visualization map" id="map">
+            
+        </div>
+    </div>
 
+    <!-- Section 2: Scatterplot Visualization -->
+    <div class="section">
+        <h2 class="section-title">Earthquake Magnitude vs. Population Impact</h2>
+        <div class="grid-layout">
+            <div class="text-content">
+                The scatterplot compares earthquake magnitude with its impact on people.
+                <br><br>
+                Larger earthquakes often affect more people, but population density also plays a role. For example, the 2011 Tohoku earthquake in Japan (magnitude 9.1) was felt by 45 million people, while smaller earthquakes can still have major impacts in urban areas.            </div>
+            <div class="visualization scatterplot" id="scatterplot">
+            </div>
+        </div>
+    </div>
 
-</script>
+    <!-- Section 3: Stacked Column Graph -->
+    <div class="section">
+        <h2 class="section-title">Geographical Distribution of Natural Disasters by Country</h2>
+        <div class="grid-layout">
+            <div class="text-content">
+                This graph shows the frequency of different natural disasters across countries.
+                <br><br>
+                Countries like Japan and Indonesia face frequent earthquakes and volcanic eruptions, while the U.S. encounters a range of disasters, including hurricanes.
+                <br><br>
+                Each column represents a country, and sections indicate the types of disasters, revealing geographic trends and vulnerabilities.
+            </div>
+            <div class="visualization stacked-bar" id="stackedbar">
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
+<script type="text/javascript">
+
+    vegaEmbed('#map', "src/js/map.vg.json").then(function(result) {
+    }).catch(console.error);
+    
+    vegaEmbed('#scatterplot', "src/js/scatterplot.vg.json").then(function(result) {
+    }).catch(console.error);
+    
+    vegaEmbed('#stackedbar', "src/js/scatterplot.vg.json").then(function(result) {
+    }).catch(console.error);
+  
+  </script>
+  
 </html>
