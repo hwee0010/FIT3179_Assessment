@@ -1,70 +1,116 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": { "url": "src/data/earthquakes.csv"},
+  "data": { "url": "src/data/earthquakes.csv" },
   "transform": [
     {
       "calculate": "datum.continent[0] + datum.continent[1]",
       "as": "CountryInitials"
     }
   ],
-  "width": 600,
-  "height": 300,
+  "width": 1000,
+  "height": 350,
   "title": {
-      "text": "Earthquake Magnitude Vs. Population Impact",
-      "fontSize": 40,
-      "font": "Impact",
-      "fontWeight": ""
-    },
+    "text": "Earthquake Magnitude Vs. Population Impact",
+    "fontSize": 40,
+    "font": "Impact",
+    "fontWeight": ""
+  },
   "mark": "text",
   "params": [
     {
-      "name": "Continent",
+      "name": "highlight",
+      "select": { "type": "point", "on": "pointerover" }
+    },
+    {
+      "name": "select",
+      "select": "point"
+    },
+    {
+      "name": "continent",
       "select": { "type": "point", "fields": ["continent"] },
       "bind": {
         "input": "select",
         "options": [null, "North America", "Asia", "Oceania"]
       }
-    }
+    },
+    { "name": "grid", "select": "interval", "bind": "scales" }
   ],
   "encoding": {
-    "text": { "field": "CountryInitials", "type": "nominal"},
+    "text": {
+      "field": "CountryInitials",
+      "type": "nominal",
+      "fontWeight": {
+        "value":"bold"
+      }
+    },
     "tooltip": [
-      { "field": "continent"},
+      { "field": "continent" },
       { "field": "country" },
       { "field": "magnitude", "type": "ordinal" },
       { "field": "depth", "type": "quantitative" },
       { "field": "date", "type": "temporal" },
-      {"field": "felt","type":"quantitative"},
-      {"field": "cdi","type":"ordinal"}
-    ], 
+      { "field": "felt", "type": "quantitative" },
+      { "field": "cdi", "type": "ordinal" }
+    ],
     "x": {
       "field": "magnitude",
       "type": "quantitative",
-      "scale": { "domainMin": 2.5 },
+      "scale": { "domainMin": 2.5, "domainMax": 8},
       "axis": {
-        "title": "Earthquake Magnitude (Richter Scale)"
+        "title": "Earthquake Magnitude (Richter Scale)",
+        "titleFontSize": 15
       }
     },
     "y": {
       "field": "cdi",
       "type": "quantitative",
+      "scale": {"domainMin": 1, "domainMax":10},
       "axis": {
-        "title": "Community Determined Intensity"
+        "title": "Community Determined Intensity",
+        "titleFontSize": 15
+
       }
     },
     "color": {
       "condition": {
-        "param": "Continent",
+        "param": "continent",
         "field": "felt",
-        "legend": { "title": "No. People Who Reported Feeling Event" },
+        "legend": { "title": "No. People Who Felt E.Q.",
+        "labelFontSize":15,
+        "titleFontSize":15
+      },
         "type": "quantitative",
-        "bin":true,
-        "scale":{"type":"symlog"}
+        "bin": true,
+        "scale": { "type": "symlog", "scheme":"bluegreen" }
       },
       "value": "grey"
     },
+
+    "fillOpacity": {
+      "condition": { "param": "select", "value": 1 },
+      "value": 0.3
+    },
+    "strokeWidth": {
+      "condition": [
+        {
+          "param": "select",
+          "empty": false,
+          "value": 100
+        },
+        {
+          "param": "highlight",
+          "empty": false,
+          "value": 100
+        }
+      ],
+      "value": 0
+    },
+
     "size": {
-      "field": "felt", "type": "quantitative","scale": {"type":"symlog"}
+      "field": "felt",
+      "type": "quantitative",
+      "scale": { "type": "symlog" },
+      "legend": null
     }
   },
   "config": {

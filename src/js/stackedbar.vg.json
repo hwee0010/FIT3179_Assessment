@@ -22,8 +22,8 @@
       }
     }
   ],
-  "width": "800",
-  "height": "300",
+  "width": "1000",
+  "height": "350",
   "title": {
     "text": "Geographical Distribution of Natural Disasters by Country",
     "fontSize": 40,
@@ -34,12 +34,18 @@
   "mark": "bar",
   "params": [
     {
-      "name": "Natural Disaster",
+      "name": "highlight",
+      "select": { "type": "point", "on": "pointerover" }
+    },
+    {
+      "name": "select",
+      "select": "point"
+    },
+    {
+      "name": "disaster",
       "select": { "type": "point", "fields": ["type"] },
-      "bind": {
-        "input": "select",
-        "options": [null, "tsunami", "volcano", "earthquake"]
-      }
+      "bind": {"legend": {"type": "dblclick"}},
+      "labelFontSize": 20
     }
   ],
   "encoding": {
@@ -48,23 +54,48 @@
       "field": "country_upper",
       "type": "nominal",
       "axis": {
-        "title": "Country"
-      }
+        "title": "Country",
+        "titleFontSize": 15
+
+      },
+      "sort": "-y"
     },
     "y": {
       "aggregate": "count",
       "type": "quantitative",
       "axis": {
-        "title": "Count"
-      },
-      "transform": {
-        "filter": { "aggregate": "count", "gte": 75 }
+        "title": "Count",
+        "titleFontSize": 15
+
       }
+    },
+    "fillOpacity": {
+      "condition": { "param": "select", "value": 1 },
+      "value": 0.3
+    },
+    "strokeWidth": {
+      "condition": [
+        {
+          "param": "select",
+          "empty": false,
+          "value": 2
+        },
+        {
+          "param": "highlight",
+          "empty": false,
+          "value": 1
+        }
+      ],
+      "value": 0
+    },
+    "opacity": {
+      "condition": { "param": "disaster", "value": 1 },
+      "value": 0.2
     },
     "tooltip": [
       { "field": "type" },
       { "field": "country" },
-      { "field": "count" }
+      { "aggregate": "count" }
     ],
     "color": {
       "field": "type",
@@ -72,7 +103,12 @@
       "scale": {
         "domain": ["tsunami", "volcano", "earthquake"],
         "range": ["blue", "red", "green"]
+      },
+      "legend": {
+        "title": "Disaster Category",
+        "labelFontSize": 15,  
+        "titleFontSize": 15
       }
-    }
   }
+}
 }
