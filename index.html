@@ -8,13 +8,13 @@
   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Natural Disasters Data Visualization</title>
+    <title>Data Visualisation 2</title>
     <style>
         * {
             box-sizing: border-box;
         }
         body {
-            font-family: Arial, sans-serif;
+            font-family: roboto, sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
@@ -29,8 +29,9 @@
         .section-title {
             text-align: center;
             margin-bottom: 20px;
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 40px;
+            font-weight: normal;
+            font-family: Impact
         }
         .text-content {
             text-align: center;
@@ -46,7 +47,7 @@
         /* Responsive Grid for the last two charts */
         .grid-layout {
             display: grid;
-            grid-template-columns: 1fr 2fr; /* 1:2 ratio */
+            grid-template-columns: 1fr 4fr; /* 1:4 ratio */
             gap: 20px;
             align-items: start;
         }
@@ -62,6 +63,18 @@
                 grid-template-columns: 1fr; /* Stack text and charts on smaller screens */
             }
         }
+        .green {
+            color: green;
+            font-size: 25
+        }
+        .blue {
+            color: blue;
+            font-size: 25
+        }
+        .red {
+            color: red;
+            font-size: 25
+        }
     </style>
 </head>
 
@@ -70,13 +83,15 @@
 <div class="container">
     <!-- Section 1: Map Visualization -->
     <div class="section">
-        <h2 class="section-title">Correlation Between Tectonic Plates and Natural Disasters</h2>
+        <h2 class="section-title">Global Patterns and Impacts of Natural Disasters</h2>
         <div class="text-content">
-            This map shows the correlation between tectonic plates and natural disasters like earthquakes, tsunamis, and volcanoes.
+            You might wonder why some countries such as Japan experience more earthquakes, volcanic eruptions and tsunamis than countries like Australia. The answer lies in the location tectonic plates beneath earth's crust. In this visualisation, you can see how natural disasters cluster around certain regions, and how it impacts the people living there.
             <br><br>
-            Around 90% of earthquakes and 75% of active volcanoes occur near tectonic plate boundaries, especially along the Pacific Ring of Fire. 
+            The following interactive map shows the correlation between tectonic plates and the following natural disasters: <b><div class="green">earthquakes, </div><div class="blue">tsunamis </div> <div class="red"> and volcanoes!</div></b>
             <br><br>
-            Use the map to explore where these disasters cluster and how tectonic movements shape global risk zones.
+            <b>FUN FACT!: </b>The majority of natural disasters occur around tectonic borders! If you look at the areas where there are the most number of disasters, these coincide with tectonic borders and form the Pacific Ring Of Fire. 
+            <br><br>
+            Use the map to explore where these disasters cluster and how tectonic plate borders impact global risk zones.
         </div>
         <div class="visualization map" id="map">
             
@@ -85,7 +100,7 @@
 
     <!-- Section 2: Scatterplot Visualization -->
     <div class="section">
-        <h2 class="section-title">Earthquake Magnitude vs. Population Impact</h2>
+        <h2 class="section-title"></h2>
         <div class="grid-layout">
             <div class="text-content">
                 The scatterplot compares earthquake magnitude with its impact on people.
@@ -98,7 +113,7 @@
 
     <!-- Section 3: Stacked Column Graph -->
     <div class="section">
-        <h2 class="section-title">Geographical Distribution of Natural Disasters by Country</h2>
+        <h2 class="section-title"></h2>
         <div class="grid-layout">
             <div class="text-content">
                 This graph shows the frequency of different natural disasters across countries.
