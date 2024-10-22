@@ -2,17 +2,14 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 900,
     "height": 500,
-    "background": "lightskyblue",
+    "background": "white",
     "title": {
-      "text": "Global Distribution of Natural Disasters",
-      "subtitle": "Below is the distribution of tsunamis and earthquakes globally.",
-      "subtitleFontSize": 15,
-      "fontSize": 30,
+      "text": "Correlation Between Tectonic Plates and Natural Disasters",
+      "fontSize": 40,
       "font": "Impact",
-      "fontWeight": "bold"
+      "fontWeight": ""
     },
     "projection": { "type": "equirectangular" },
-  
     "layer": [
       {
         "data": {
@@ -28,8 +25,8 @@
         },
         "mark": {
           "type": "geoshape",
-          "fill": "forestgreen",
-          "stroke": "darkgreen"
+          "fill": "lightgray",
+          "stroke": "gray"
         }
       },
       
@@ -94,7 +91,7 @@
           "color": {
             "field": "depth",
             "type": "quantitative",
-            "title": "Depth in km",
+            "title": "Earthquake Depth (km)",
             "scale": { "scheme": "darkblue", "domainMin": 0, "domainMax": 150 }
           },
           "strokeOpacity": { "value": 1 }

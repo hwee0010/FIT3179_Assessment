@@ -1,72 +1,78 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": { "url": "src/data/earthquakes.csv" },
-    "transform": [
-      {
-        "calculate": "datum.continent[0] + datum.continent[1]",
-        "as": "CountryInitials"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": { "url": "src/data/combined.csv" },
+  "transform": [
+    {
+      "filter": {
+        "field": "country_upper",
+        "oneOf": [
+          "CHILE",
+          "CHINA",
+          "GREECE",
+          "INDONESIA",
+          "ITALY",
+          "JAPAN",
+          "MEXICO",
+          "NEW ZEALAND",
+          "PAPAU NEW GUINEA",
+          "RUSSIA",
+          "PHILIPPINES",
+          "USA"
+        ]
       }
-    ],
-    "width": 600,
-    "height": 300,
-    "title": {
-      "text": "Scatterplot of Earthquake Magnitude Vs. Depth",
-      "subtitle":"Earthquakes of the same depth can be recorded as different magnitudes.",
-      "subtitleFontSize":15,
-      "subtitleFont":"Arial",
-      "fontSize": 30,
-      "font": "Impact",
-      "fontWeight": "bold"
-    },
-    "mark": "text",
-    "params": [
-      {
-        "name": "Continent",
-        "select": { "type": "point", "fields": ["continent"] },
-        "bind": {
-          "input": "select",
-          "options": [null, "North America", "Asia", "Oceania"]
-        }
+    }
+  ],
+  "width": "800",
+  "height": "300",
+  "title": {
+    "text": "Geographical Distribution of Natural Disasters by Country",
+    "fontSize": 40,
+    "font": "Impact",
+    "fontWeight": ""
+  },
+
+  "mark": "bar",
+  "params": [
+    {
+      "name": "Natural Disaster",
+      "select": { "type": "point", "fields": ["type"] },
+      "bind": {
+        "input": "select",
+        "options": [null, "tsunami", "volcano", "earthquake"]
       }
-    ],
-    "encoding": {
-      "text": { "field": "CountryInitials", "type": "nominal" },
-      "tooltip": [
-        { "field": "continent"},
-        { "field": "country" },
-        { "field": "magnitude", "type": "ordinal" },
-        { "field": "depth", "type": "quantitative" },
-        { "field": "date", "type": "temporal" }
-      ],
-      "x": {
-        "field": "magnitude",
-        "type": "quantitative",
-        "scale": { "domainMin": 2.5 },
-        "axis": {
-          "title": "Earthquake Magnitude (Richter Scale)"
-        }
-      },
-      "y": {
-        "field": "depth",
-        "type": "quantitative",
-        "axis": {
-          "title": "Earthquake Depth (km)"
-        }
-      },
-      "color": {
-        "condition": {
-          "param": "Continent",
-          "field": "cdi",
-          "legend": { "title": "Community Determined Intensity" },
-          "type": "quantitative"
-        },
-        "value": "grey"
+    }
+  ],
+  "encoding": {
+    "text": { "field": "CountryInitials", "type": "nominal" },
+    "x": {
+      "field": "country_upper",
+      "type": "nominal",
+      "axis": {
+        "title": "Country"
       }
     },
-    "config": {
-      "view": {
-        "stroke": "transparent"
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "axis": {
+        "title": "Count"
+      },
+      "transform": {
+        "filter": { "aggregate": "count", "gte": 75 }
+      }
+    },
+    "tooltip": [
+      { "field": "type" },
+      { "field": "country" },
+      { "field": "count" }
+    ],
+    "color": {
+      "field": "type",
+      "type": "nominal",
+      "scale": {
+        "domain": ["tsunami", "volcano", "earthquake"],
+        "range": ["blue", "red", "green"]
       }
     }
   }
-  
+}

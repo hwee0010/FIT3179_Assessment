@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": { "url": "src/data/earthquakes.csv" },
+  "data": { "url": "src/data/earthquakes.csv"},
   "transform": [
     {
       "calculate": "datum.continent[0] + datum.continent[1]",
@@ -10,14 +10,11 @@
   "width": 600,
   "height": 300,
   "title": {
-    "text": "Scatterplot of Earthquake Magnitude Vs. Depth",
-    "subtitle":"Earthquakes of the same depth can be recorded as different magnitudes.",
-    "subtitleFontSize":15,
-    "subtitleFont":"Arial",
-    "fontSize": 30,
-    "font": "Impact",
-    "fontWeight": "bold"
-  },
+      "text": "Earthquake Magnitude Vs. Population Impact",
+      "fontSize": 40,
+      "font": "Impact",
+      "fontWeight": ""
+    },
   "mark": "text",
   "params": [
     {
@@ -30,14 +27,16 @@
     }
   ],
   "encoding": {
-    "text": { "field": "CountryInitials", "type": "nominal" },
+    "text": { "field": "CountryInitials", "type": "nominal"},
     "tooltip": [
       { "field": "continent"},
       { "field": "country" },
       { "field": "magnitude", "type": "ordinal" },
       { "field": "depth", "type": "quantitative" },
-      { "field": "date", "type": "temporal" }
-    ],
+      { "field": "date", "type": "temporal" },
+      {"field": "felt","type":"quantitative"},
+      {"field": "cdi","type":"ordinal"}
+    ], 
     "x": {
       "field": "magnitude",
       "type": "quantitative",
@@ -47,20 +46,25 @@
       }
     },
     "y": {
-      "field": "depth",
+      "field": "cdi",
       "type": "quantitative",
       "axis": {
-        "title": "Earthquake Depth (km)"
+        "title": "Community Determined Intensity"
       }
     },
     "color": {
       "condition": {
         "param": "Continent",
-        "field": "cdi",
-        "legend": { "title": "Community Determined Intensity" },
-        "type": "quantitative"
+        "field": "felt",
+        "legend": { "title": "No. People Who Reported Feeling Event" },
+        "type": "quantitative",
+        "bin":true,
+        "scale":{"type":"symlog"}
       },
       "value": "grey"
+    },
+    "size": {
+      "field": "felt", "type": "quantitative","scale": {"type":"symlog"}
     }
   },
   "config": {
