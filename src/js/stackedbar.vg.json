@@ -4,20 +4,20 @@
   "transform": [
     {
       "filter": {
-        "field": "country_upper",
+        "field": "Country",
         "oneOf": [
-          "CHILE",
-          "CHINA",
-          "GREECE",
-          "INDONESIA",
-          "ITALY",
-          "JAPAN",
-          "MEXICO",
-          "NEW ZEALAND",
-          "PAPAU NEW GUINEA",
-          "RUSSIA",
-          "PHILIPPINES",
-          "USA"
+          "Chile",
+          "China",
+          "Greece",
+          "Indonesia",
+          "Italy",
+          "Japan",
+          "Mexico",
+          "New Zealand",
+          "Papau New Guinea",
+          "Russia",
+          "Philippines",
+          "Usa"
         ]
       }
     }
@@ -28,7 +28,8 @@
     "text": "Geographical Distribution of Natural Disasters by Country",
     "fontSize": 40,
     "font": "Impact",
-    "fontWeight": ""
+    "fontWeight": "",
+    "color":"#5a1111"
   },
 
   "mark": "bar",
@@ -43,20 +44,19 @@
     },
     {
       "name": "disaster",
-      "select": { "type": "point", "fields": ["type"] },
+      "select": { "type": "point", "fields": ["Type"] },
       "bind": {"legend": {"type": "dblclick"}},
       "labelFontSize": 20
     }
   ],
   "encoding": {
-    "text": { "field": "CountryInitials", "type": "nominal" },
     "x": {
-      "field": "country_upper",
+      "field": "Country",
       "type": "nominal",
       "axis": {
         "title": "Country",
-        "titleFontSize": 15
-
+        "titleFontSize": 15,
+        "labelFontSize":15
       },
       "sort": "-y"
     },
@@ -65,7 +65,8 @@
       "type": "quantitative",
       "axis": {
         "title": "Count",
-        "titleFontSize": 15
+        "titleFontSize": 15,
+        "labelFontSize":15
 
       }
     },
@@ -94,14 +95,14 @@
     },
     "tooltip": [
       { "field": "type" },
-      { "field": "country" },
+      { "field": "Country" },
       { "aggregate": "count" }
     ],
     "color": {
-      "field": "type",
+      "field": "Type",
       "type": "nominal",
       "scale": {
-        "domain": ["tsunami", "volcano", "earthquake"],
+        "domain": ["Tsunami", "Volcano", "Earthquake"],
         "range": ["blue", "red", "green"]
       },
       "legend": {

@@ -13,7 +13,9 @@
     "text": "Earthquake Magnitude Vs. Population Impact",
     "fontSize": 40,
     "font": "Impact",
-    "fontWeight": ""
+    "fontWeight": "",
+    "color":"#5a1111"
+
   },
   "mark": "text",
   "params": [
@@ -58,7 +60,8 @@
       "scale": { "domainMin": 2.5, "domainMax": 8},
       "axis": {
         "title": "Earthquake Magnitude (Richter Scale)",
-        "titleFontSize": 15
+        "titleFontSize": 15,
+        "labelFontSize":15
       }
     },
     "y": {
@@ -67,7 +70,8 @@
       "scale": {"domainMin": 1, "domainMax":10},
       "axis": {
         "title": "Community Determined Intensity",
-        "titleFontSize": 15
+        "titleFontSize": 15,
+        "labelFontSize":15
 
       }
     },
@@ -75,7 +79,7 @@
       "condition": {
         "param": "continent",
         "field": "felt",
-        "legend": { "title": "No. People Who Felt E.Q.",
+        "legend": { "title": "Population Who Felt E.Q.",
         "labelFontSize":15,
         "titleFontSize":15
       },

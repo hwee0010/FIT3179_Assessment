@@ -22,6 +22,7 @@
         .container {
             width: 90%;
             margin: 0 auto;
+            color: rgb(90, 17, 17);
         }
         .section {
             margin-bottom: 40px;
@@ -29,8 +30,8 @@
         .section-title {
             text-align: center;
             margin-bottom: 20px;
-            font-size: 40px;
-            font-weight: normal;
+            font-size: 50px;
+            font-weight: bold;
             font-family: Impact
         }
         .text-content {
@@ -38,9 +39,10 @@
             margin-bottom: 20px;
         }
         .visualization {
-            background-color: #f0f0f0;
+            background-color: rgb(221, 205, 205);
             padding: 20px;
-            border: 1px solid #ddd;
+            border: 5px solid rgb(90, 17, 17);
+            ;
             text-align: center;
         }
         
@@ -103,9 +105,9 @@
         <h2 class="section-title"></h2>
         <div class="grid-layout">
             <div class="text-content">
-                The scatterplot compares earthquake magnitude with its impact on people.
-                <br><br>
-                Larger earthquakes often affect more people, but population density also plays a role. For example, the 2011 Tohoku earthquake in Japan (magnitude 9.1) was felt by 45 million people, while smaller earthquakes can still have major impacts in urban areas.            </div>
+                While larger magnitude earthquakes typically affect more people, their impact also depends on population density.
+                <br><Br>
+                Notice how North America ('No') and South America ('So') are felt by thousands of people due to their dense urban populations of ~1 billion people total. On the other hand, earthquakes in Asia appear to have higher magnitudes but are felt by less people.
             <div class="visualization scatterplot" id="scatterplot">
             </div>
         </div>
@@ -116,17 +118,32 @@
         <h2 class="section-title"></h2>
         <div class="grid-layout">
             <div class="text-content">
-                This graph shows the frequency of different natural disasters across countries.
-                <br><br>
                 Countries like Japan and Indonesia face frequent earthquakes and volcanic eruptions, while the U.S. encounters a range of disasters, including hurricanes.
                 <br><br>
-                Each column represents a country, and sections indicate the types of disasters, revealing geographic trends and vulnerabilities.
+                <b>TIP!: </b>Click on the Disaster Legend to explore trends across countries according to the type of natural disaster.
             </div>
             <div class="visualization stacked-bar" id="stackedbar">
             </div>
         </div>
     </div>
+    <div class="section">
+        <div class="text-content">
+            <i><b>Acknowledgements</b>
+                <br>
+                <a href="https://github.com/fraxen/tectonicplates/blob/master/GeoJSON/PB2002_plates.json?short_path=879951b">Tectonic Plates</a>
+                | 
+                <a href= "https://www.kaggle.com/datasets/jessemostipak/volcano-eruptionsVolcanic">Volcanic Dataset</a>
+                | 
+                <a href = "https://www.kaggle.com/datasets/shreyasur965/recent-earthquakes">Earthquake Dataset</a> 
+                | 
+                <a href="https://www.kaggle.com/datasets/andrewmvd/tsunami-dataset">Tsunami Dataset</a> 
+                <br>
+                Visualisation by Hasee Weerasinghe Meegahawattage, 22nd October, 2024 for FIT3179 Data Visualisation 2 Assignment
+            </i>
+        </div>
+    </div>
 </div>
+
 
 </body>
 <script type="text/javascript">

@@ -7,7 +7,8 @@
       "text": "Correlation Between Tectonic Plates and Natural Disasters",
       "fontSize": 40,
       "font": "Impact",
-      "fontWeight": ""
+      "fontWeight": "",
+      "color":"#5a1111"
     },
     "projection": {
       "type": "mercator",
@@ -102,7 +103,7 @@
         },
         "mark": {
           "type": "geoshape",
-          "fill": "lightgray",
+          "fill": "#ddcdcd",
           "stroke": "gray"
         }
       },
