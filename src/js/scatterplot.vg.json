@@ -3,7 +3,7 @@
   "data": { "url": "src/data/earthquakes.csv" },
   "transform": [
     {
-      "calculate": "datum.continent[0] + datum.continent[1]",
+      "calculate": "datum.Continent[0] + datum.Continent[1]",
       "as": "CountryInitials"
     }
   ],
@@ -28,8 +28,8 @@
       "select": "point"
     },
     {
-      "name": "continent",
-      "select": { "type": "point", "fields": ["continent"] },
+      "name": "Continent",
+      "select": { "type": "point", "fields": ["Continent"] },
       "bind": {
         "input": "select",
         "options": [null, "North America", "Asia", "Oceania"]
@@ -46,16 +46,16 @@
       }
     },
     "tooltip": [
-      { "field": "continent" },
-      { "field": "country" },
-      { "field": "magnitude", "type": "ordinal" },
-      { "field": "depth", "type": "quantitative" },
-      { "field": "date", "type": "temporal" },
-      { "field": "felt", "type": "quantitative" },
-      { "field": "cdi", "type": "ordinal" }
+      { "field": "Continent" },
+      { "field": "Country" },
+      { "field": "Magnitude", "type": "ordinal" },
+      { "field": "Depth", "type": "quantitative" },
+      { "field": "Date", "type": "temporal" },
+      { "field": "Felt", "type": "quantitative" },
+      { "field": "CDI", "type": "ordinal" }
     ],
     "x": {
-      "field": "magnitude",
+      "field": "Magnitude",
       "type": "quantitative",
       "scale": { "domainMin": 2.5, "domainMax": 8},
       "axis": {
@@ -65,7 +65,7 @@
       }
     },
     "y": {
-      "field": "cdi",
+      "field": "CDI",
       "type": "quantitative",
       "scale": {"domainMin": 1, "domainMax":10},
       "axis": {
@@ -77,8 +77,8 @@
     },
     "color": {
       "condition": {
-        "param": "continent",
-        "field": "felt",
+        "param": "Continent",
+        "field": "Felt",
         "legend": { "title": "Population Who Felt E.Q.",
         "labelFontSize":15,
         "titleFontSize":15
@@ -111,7 +111,7 @@
     },
 
     "size": {
-      "field": "felt",
+      "field": "Felt",
       "type": "quantitative",
       "scale": { "type": "symlog" },
       "legend": null
