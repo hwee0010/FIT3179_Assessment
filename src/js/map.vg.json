@@ -2,7 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 1200,
     "height": 1000,
-    "background": "white",
+    "background": "#f8f3f3",
     "title": {
       "text": "Correlation Between Tectonic Plates and Natural Disasters",
       "fontSize": 40,
@@ -171,48 +171,48 @@
           "translate": [{"signal": "tx"}, {"signal": "ty"}]
         },
         "data": {
-          "url": "src/data/earthquakes.csv"
+          "url": "src/data/tsunamis.csv"
         },
         "mark": {
-          "type": "square",
+          "type": "circle",
           "size":300,
           "filled": true,
-          "opacity": 0.5,
+          "fillOpacity": 0.75,
+          "strokeWidth":30,
+          "StrokeOpacity":1,
           "tooltip": { "content": "data" }
         },
         "encoding": {
           "tooltip": [
-            { "field": "continent" },
-            { "field": "country" },
-            { "field": "magnitude", "type": "ordinal" },
-            { "field": "depth", "type": "quantitative" },
-            { "field": "date", "type": "temporal" }
+            {"field":"Country"},
+            {"field":"Depth", "title":"Equivalent Depth (km)","type":"quantitative"},
+            {"field": "Magnitude","title":"Equivalent Magnitude","type":"quantitative"}
           ],
-          "longitude": { "field": "longitude", "type": "quantitative" },
-          "latitude": { "field": "latitude", "type": "quantitative" },
+          "longitude": { "field": "LONGITUDE", "type": "quantitative" },
+          "latitude": { "field": "LATITUDE", "type": "quantitative" },
           "size": {
-            "field": "magnitude",
+            "field": "Magnitude",
             "type": "quantitative",
-            "title": "E.Q. Magnitude",
+            "title": "Equiv.",
             "scale": { "domain": [6, 8] },
-            "legend": {"labelFontSize":15,"titleFontSize":15,"labelBaseline":"bottom"}
+            "legend": {"labelFontSize":15,"titleFontSize":15}
           },
           "color": {
-            "field": "depth",
+            "field": "Depth",
             "type": "quantitative",
-            "title": "E.Q. Depth (km)",
-            "scale": { "scheme": "blues", "domainMin": 0, "domainMax": 150 },
+            "title": "Tsunami Depth (km)",
+            "scale": { "scheme": "blues", "domainMin": 0, "domainMax": 170 },
             "legend": {"labelFontSize":15,"titleFontSize":15}
           },
           "strokeOpacity": { "value": 1 }
         },
         "params": [
           {
-            "name": "magnitude",
+            "name": "Magnitude",
             "select": "point"
           },
           {
-            "name": "magnitude",
+            "name": "Magnitude",
             "value": 5,
             "bind": { "input": "range", "min": 0, "max": 8 }
           }
@@ -227,50 +227,56 @@
           "translate": [{"signal": "tx"}, {"signal": "ty"}]
         },
         "data": {
-          "url": "src/data/tsunamis.csv"
+          "url": "src/data/earthquakes.csv"
         },
         "mark": {
-          "type": "circle",
-          "size":300,
+          "type": "square",
+          "strokeWidth":40,
           "filled": true,
-          "opacity": 0.5,
+          "fillOpacity": 0.75,
+          "StrokeOpacity":1,
           "tooltip": { "content": "data" }
         },
         "encoding": {
           "tooltip": [
-            {"field":"COUNTRY","title": "Country"}
+            { "field": "Continent" },
+            { "field": "Country" },
+            { "field": "Magnitude", "type": "ordinal" },
+            { "field": "Depth", "type": "quantitative" },
+            { "field": "Date", "type": "temporal" }
           ],
-          "longitude": { "field": "LONGITUDE", "type": "quantitative" },
-          "latitude": { "field": "LATITUDE", "type": "quantitative" },
+          "longitude": { "field": "Longitude", "type": "quantitative" },
+          "latitude": { "field": "Latitude", "type": "quantitative" },
           "size": {
-            "field": "EQ_MAGNITUDE",
+            "field": "Magnitude",
             "type": "quantitative",
-            "title": "T.M. Magnitude",
+            "title": "Magnitude",
             "scale": { "domain": [6, 8] },
-            "legend": {"labelFontSize":15,"titleFontSize":15}
+            "legend": {"labelFontSize":15,"titleFontSize":15,"labelBaseline":"bottom"}
           },
           "color": {
-            "field": "EQ_DEPTH",
+            "field": "Depth",
             "type": "quantitative",
-            "title": "E.Q. Depth (km)",
-            "scale": { "scheme": "bluegreen", "domainMin": 0, "domainMax": 150 },
+            "title": "Earthquake Depth (km)",
+            "bin": true,
+            "scale": { "scheme": "greens","domainMin":0,"domainMax":400},
+
             "legend": {"labelFontSize":15,"titleFontSize":15}
           },
           "strokeOpacity": { "value": 1 }
         },
         "params": [
           {
-            "name": "MAGNITUDE",
+            "name": "magnitude",
             "select": "point"
           },
           {
-            "name": "MAGNITUDE",
+            "name": "magnitude",
             "value": 5,
             "bind": { "input": "range", "min": 0, "max": 8 }
           }
         ]
       }
-  
     ]
   }
   
