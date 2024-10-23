@@ -32,7 +32,7 @@
       "select": { "type": "point", "fields": ["Continent"] },
       "bind": {
         "input": "select",
-        "options": [null, "North America", "Asia", "Oceania"]
+        "options": [null, "North America", "South America", "Asia"]
       }
     },
     { "name": "grid", "select": "interval", "bind": "scales" }
