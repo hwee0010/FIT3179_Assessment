@@ -85,7 +85,8 @@
       },
         "type": "quantitative",
         "bin": true,
-        "scale": { "type": "symlog", "scheme":"bluegreen" }
+        "scale": {"scheme":"greens"}
+        
       },
       "value": "grey"
     },
