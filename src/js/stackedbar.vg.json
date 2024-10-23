@@ -64,7 +64,7 @@
       "aggregate": "count",
       "type": "quantitative",
       "axis": {
-        "title": "Count",
+        "title": "No. Occurences",
         "titleFontSize": 15,
         "labelFontSize":15
 
@@ -94,7 +94,7 @@
       "value": 0.2
     },
     "tooltip": [
-      { "field": "type" },
+      { "field": "Type" },
       { "field": "Country" },
       { "aggregate": "count" }
     ],
